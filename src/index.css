@@ -1,0 +1,6 @@
+@import "tailwindcss";
+
+/* 順便加入之前幫你寫的視窗拖拽修正，避免選取到文字 */
+.window-header {
+  user-select: none;
+}
