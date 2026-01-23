@@ -76,9 +76,27 @@ const App = () => {
             gradient: "from-amber-200 to-yellow-500",
             isTextFile: true,
             content: {
-                edu: "🎓 學歷：大學",
-                exp: "💼 經歷：曾擔任過老師、業務員、桌遊店老闆、HR等，現職Backend Developer，主要語言是JAVA。",
-                bio: "致力於透過 AI 提升開發效率。"
+                title: "SYSTEM_MANIFESTO: Professional_Profile",
+                bio: "🚀 專注於 AI 自動化與高效能後端的實戰派開發者。具備多維度的產業視角，擅長將複雜業務需求轉化為直覺、自動化的技術解決方案。",
+
+                // 強調工作經驗與轉職後的技術沉澱
+                experience: [
+                    "🔹 Current: Backend Developer (JAVA)",
+                    "   - 主力研發高效能後端架構，確保系統穩定性與擴展性。",
+                    "   - 導入 AI 工具優化開發流程，提升代碼生產力 30% 以上。",
+                    "🔹 Diverse Background: Entrepreneur / Sales / HR",
+                    "   - 曾任桌遊店老闆與業務，具備強大的產品思維與市場敏感度。",
+                    "   - HR 經歷強化了對組織流程的理解，轉化為開發時對業務邏輯的精確掌控。"
+                ],
+
+                // 強調具體成就（目前以你現有的專案為主）
+                achievements: [
+                    "🏆 AI 投資助手：串接 Gemini API 實現 24/7 市場情緒自動化分析，降低投資者 50% 的資訊過濾時間。",
+                    "🏆 票券管理系統：利用 LINE Bot + GAS 解決數位資產過期痛點，實現零延遲 OCR 辨識自動輸入。",
+                    "🏆 技術整合：成功將分散的 Google 生態系工具（Sheet/Apps Script）與主流 AI 介面達成無縫對齊。"
+                ],
+
+                footer: ">> Status: Ready to build the future. Contact for collaboration."
             }
         },
         {
@@ -261,9 +279,39 @@ const App = () => {
                                         </div>
                                     </div>
                                 ) : win.isTextFile ? (
-                                    <div className="flex-1 bg-white p-8 font-mono text-slate-800 text-sm overflow-y-auto leading-relaxed">
-                                        <div className="border-b-2 border-slate-200 pb-4 mb-4"><div className="text-xl font-bold">README.txt</div></div>
-                                        <div className="space-y-4"><p>{win.content.edu}</p><p>{win.content.exp}</p><p className="italic text-slate-500 mt-6">{win.content.bio}</p></div>
+                                    <div className="flex-1 bg-[#f8fafc] p-8 font-mono text-slate-800 text-xs overflow-y-auto leading-relaxed">
+                                        <div className="border-b-2 border-indigo-500 pb-2 mb-6">
+                                            <div className="text-lg font-black text-indigo-900 uppercase tracking-tighter">System.log / Executive_Summary</div>
+                                        </div>
+
+                                        <div className="space-y-6">
+                                            <section>
+                                                <h5 className="font-bold text-indigo-600 mb-2 underline">// SUMMARY</h5>
+                                                <p className="pl-4 border-l-2 border-slate-200 text-slate-600 italic">{win.content.bio}</p>
+                                            </section>
+
+                                            <section>
+                                                <h5 className="font-bold text-indigo-600 mb-2 underline">// EXPERIENCE_LOG</h5>
+                                                <ul className="space-y-2">
+                                                    {win.content.experience.map((exp, i) => (
+                                                        <li key={i} className="pl-2">{exp}</li>
+                                                    ))}
+                                                </ul>
+                                            </section>
+
+                                            <section>
+                                                <h5 className="font-bold text-indigo-600 mb-2 underline">// KEY_ACHIEVEMENTS</h5>
+                                                <ul className="space-y-2">
+                                                    {win.content.achievements.map((ach, i) => (
+                                                        <li key={i} className="pl-2 text-slate-700 font-bold">{ach}</li>
+                                                    ))}
+                                                </ul>
+                                            </section>
+                                        </div>
+
+                                        <div className="mt-10 pt-4 border-t border-slate-200 text-[10px] text-slate-400 text-right">
+                                            {win.content.footer}
+                                        </div>
                                     </div>
                                 ) : win.isContact ? (
                                     <div className="flex-1 flex flex-col items-center justify-center gap-6 p-8">
