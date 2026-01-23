@@ -11,6 +11,9 @@ const App = () => {
     const [currentTime, setCurrentTime] = useState(new Date());
     const [resizingId, setResizingId] = useState(null);
 
+    // 網格大小設定 (例如 100x100 像素一個單位)
+    const gridSize = 100;
+
     // 終端機狀態
     const [terminalInput, setTerminalInput] = useState('');
     const [terminalHistory, setTerminalHistory] = useState([
@@ -91,15 +94,12 @@ const App = () => {
 
     const allProjects = [...topLeftProjects, ...bottomRightProjects];
 
-    // --- 視窗管理邏輯 ---
+    // --- 視窗管理邏輯 (保持不變) ---
     const openWindow = (p) => {
         if (!openWindows.find(w => w.id === p.id)) {
             const maxZ = openWindows.length > 0 ? Math.max(...openWindows.map(w => w.zIndex)) : 10;
             setOpenWindows([...openWindows, {
-                ...p,
-                zIndex: maxZ + 1,
-                width: p.isTextFile ? 420 : 750,
-                height: p.isTextFile ? 520 : 480
+                ...p, zIndex: maxZ + 1, width: p.isTextFile ? 420 : 750, height: p.isTextFile ? 520 : 480
             }]);
         } else { focusWindow(p.id); }
     };
@@ -143,11 +143,9 @@ const App = () => {
         }
     };
 
-    // --- 🛠️ 修改為：靜態股市圖表 (移除動圖邏輯) ---
     const StockChart = () => {
         const pathData = "M0,45 L15,42 L30,44 L45,30 L60,35 L75,15 L90,20 L100,5";
         const areaPathData = `${pathData} L100,50 L0,50 Z`;
-
         const volumes = [
             { h: 12, c: "#ef4444" }, { h: 18, c: "#ef4444" }, { h: 8,  c: "#22c55e" },
             { h: 15, c: "#ef4444" }, { h: 22, c: "#ef4444" }, { h: 10, c: "#22c55e" },
@@ -164,42 +162,16 @@ const App = () => {
                             <stop offset="100%" stopColor="#ef4444" stopOpacity="0" />
                         </linearGradient>
                     </defs>
-
-                    {/* 靜態成交量柱狀圖 */}
-                    {volumes.map((v, i) => (
-                        <rect
-                            key={i}
-                            x={i * 10 + 1}
-                            y={50 - v.h}
-                            width="6"
-                            height={v.h}
-                            fill={v.c}
-                            fillOpacity="0.5"
-                        />
-                    ))}
-
-                    {/* 靜態漸層填充 */}
+                    {volumes.map((v, i) => (<rect key={i} x={i * 10 + 1} y={50 - v.h} width="6" height={v.h} fill={v.c} fillOpacity="0.5" />))}
                     <path d={areaPathData} fill="url(#stockGradientRed)" />
-
-                    {/* 靜態主線條 */}
-                    <path
-                        d={pathData}
-                        fill="none"
-                        stroke="#ef4444"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                    />
+                    <path d={pathData} fill="none" stroke="#ef4444" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                 </svg>
-
                 <div className="absolute top-2 left-3 flex flex-col gap-1">
                     <div className="flex items-center gap-1.5">
                         <span className="text-[9px] text-red-400 font-mono bg-red-950/40 px-2 py-0.5 rounded-full border border-red-500/30 flex items-center gap-1">
                             <TrendingUp size={10} /> BULLISH TREND
                         </span>
-                        <span className="text-[9px] text-red-500 font-bold flex items-center gap-0.5">
-                            +4.12% <ArrowUpRight size={10}/>
-                        </span>
+                        <span className="text-[9px] text-red-500 font-bold flex items-center gap-0.5">+4.12% <ArrowUpRight size={10}/></span>
                     </div>
                 </div>
                 <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(to_right,#ef444405_1px,transparent_1px),linear-gradient(to_bottom,#ef444405_1px,transparent_1px)] bg-[size:20px_20px]"></div>
@@ -218,10 +190,23 @@ const App = () => {
             </div>
 
             <div className="flex-1 relative p-6">
-                {/* 左上角圖示區 */}
+                {/* 左上角圖示區 - 修改拖拽邏輯 */}
                 <div className="absolute top-6 left-6 flex flex-col gap-6">
                     {topLeftProjects.map((p) => (
-                        <motion.div key={p.id} drag={!resizingId} dragConstraints={constraintsRef} onDoubleClick={() => openWindow(p)} className="flex flex-col items-center gap-1 cursor-pointer" style={{width: 85}}>
+                        <motion.div
+                            key={p.id}
+                            drag={!resizingId}
+                            dragConstraints={constraintsRef}
+                            dragElastic={0}           // 禁止超出邊界的彈性
+                            dragMomentum={false}      // 核心：移除放手後的滑動感
+                            dragTransition={{ power: 0, timeConstant: 0 }} // 確保完全沒有殘餘慣性
+                            onDragEnd={(event, info) => {
+                                // 此處邏輯可擴展用於儲存位置，Framer Motion 會自動處理渲染
+                            }}
+                            onDoubleClick={() => openWindow(p)}
+                            className="flex flex-col items-center gap-1 cursor-pointer"
+                            style={{width: 85}}
+                        >
                             <div className={`bg-gradient-to-br ${p.gradient} p-4 rounded-2xl shadow-xl ring-1 ring-white/20 hover:scale-110 transition-transform`}>
                                 <p.icon className="text-white" size={32}/>
                             </div>
@@ -230,10 +215,19 @@ const App = () => {
                     ))}
                 </div>
 
-                {/* 右下角圖示區 */}
+                {/* 右下角圖示區 - 修改拖拽邏輯 */}
                 <div className="absolute bottom-24 right-6 flex flex-col gap-6">
                     {bottomRightProjects.map((p) => (
-                        <motion.div key={p.id} drag={!resizingId} dragConstraints={constraintsRef} onDoubleClick={() => openWindow(p)} className="flex flex-col items-center gap-1 cursor-pointer" style={{width: 85}}>
+                        <motion.div
+                            key={p.id}
+                            drag={!resizingId}
+                            dragConstraints={constraintsRef}
+                            dragElastic={0}
+                            dragMomentum={false}
+                            onDoubleClick={() => openWindow(p)}
+                            className="flex flex-col items-center gap-1 cursor-pointer"
+                            style={{width: 85}}
+                        >
                             <div className={`bg-gradient-to-br ${p.gradient} p-4 rounded-2xl shadow-xl ring-1 ring-white/20 hover:scale-110 transition-transform`}>
                                 <p.icon className="text-white" size={32}/>
                             </div>
