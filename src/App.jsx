@@ -96,6 +96,11 @@ const App = () => {
                     "🏆 技術整合：成功將分散的 Google 生態系工具（Sheet/Apps Script）與主流 AI 介面達成無縫對齊。"
                 ],
 
+                links: [
+                    { label: "🌐 個人資訊與技能樹", url: "https://supergalen.com/guild/kevin.html" },
+                    { label: "🧵 作者 Threads", url: "https://www.threads.net/@supergalen0921" }
+                ],
+
                 footer: ">> Status: Ready to build the future. Contact for collaboration."
             }
         },
@@ -279,37 +284,51 @@ const App = () => {
                                         </div>
                                     </div>
                                 ) : win.isTextFile ? (
-                                    <div className="flex-1 bg-[#f8fafc] p-8 font-mono text-slate-800 text-xs overflow-y-auto leading-relaxed">
-                                        <div className="border-b-2 border-indigo-500 pb-2 mb-6">
-                                            <div className="text-lg font-black text-indigo-900 uppercase tracking-tighter">System.log / Executive_Summary</div>
+                                    <div className="flex-1 bg-white p-8 font-mono text-slate-800 text-xs overflow-y-auto leading-relaxed">
+                                        <div className="border-b-2 border-indigo-600 pb-3 mb-6">
+                                            <div className="text-xl font-black text-indigo-950 uppercase tracking-tighter">KEVIN_PROFILE.manifesto</div>
+                                            <div className="text-[9px] text-slate-400 font-bold mt-1">LAST_UPDATE: {new Date().toLocaleDateString()}</div>
                                         </div>
 
                                         <div className="space-y-6">
                                             <section>
-                                                <h5 className="font-bold text-indigo-600 mb-2 underline">// SUMMARY</h5>
-                                                <p className="pl-4 border-l-2 border-slate-200 text-slate-600 italic">{win.content.bio}</p>
+                                                <h5 className="font-bold text-indigo-600 mb-2">// 個人簡介</h5>
+                                                <p className="pl-4 border-l-2 border-slate-200 text-slate-600 italic leading-relaxed">
+                                                    {win.content.bio}
+                                                </p>
                                             </section>
 
                                             <section>
-                                                <h5 className="font-bold text-indigo-600 mb-2 underline">// EXPERIENCE_LOG</h5>
-                                                <ul className="space-y-2">
+                                                <h5 className="font-bold text-indigo-600 mb-2">// 專業成就 & 經歷</h5>
+                                                <ul className="space-y-3">
                                                     {win.content.experience.map((exp, i) => (
                                                         <li key={i} className="pl-2">{exp}</li>
                                                     ))}
+                                                    {win.content.achievements.map((ach, i) => (
+                                                        <li key={i} className="pl-2 text-indigo-900 font-bold font-sans">{ach}</li>
+                                                    ))}
                                                 </ul>
                                             </section>
 
                                             <section>
-                                                <h5 className="font-bold text-indigo-600 mb-2 underline">// KEY_ACHIEVEMENTS</h5>
-                                                <ul className="space-y-2">
-                                                    {win.content.achievements.map((ach, i) => (
-                                                        <li key={i} className="pl-2 text-slate-700 font-bold">{ach}</li>
+                                                <h5 className="font-bold text-indigo-600 mb-2">// 外部鏈結 (EXTERNAL_LINKS)</h5>
+                                                <div className="flex flex-col gap-2">
+                                                    {win.content.links.map((link, i) => (
+                                                        <a
+                                                            key={i}
+                                                            href={link.url}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            className="flex items-center gap-2 text-indigo-500 hover:text-indigo-700 hover:underline transition-all"
+                                                        >
+                                                            <ArrowUpRight size={14} /> {link.label}
+                                                        </a>
                                                     ))}
-                                                </ul>
+                                                </div>
                                             </section>
                                         </div>
 
-                                        <div className="mt-10 pt-4 border-t border-slate-200 text-[10px] text-slate-400 text-right">
+                                        <div className="mt-12 pt-4 border-t border-slate-100 text-[9px] text-slate-400 text-right font-bold tracking-widest uppercase">
                                             {win.content.footer}
                                         </div>
                                     </div>
