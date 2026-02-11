@@ -19,6 +19,7 @@
 - **📂 專案展示 (Project Showcase)**
   - **Ticket Manager**: 整合 LINE Bot 與 Google Apps Script 的票券管理系統。
   - **AI Investor**: 結合 Telegram Bot 與 Gemini AI 的投資輔助工具 (含即時模擬股價圖表)。
+  - **BattleInterview**: AI 戰鬥面試官，雙階段模擬面試系統 (HR + 技術)，具備反作弊偵測與自動評分。
 
 - **🎨 現代化 UI/UX**
   - **Tailwind CSS v4**: 採用最新的 Tailwind 引擎進行極速樣式渲染。
