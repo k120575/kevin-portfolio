@@ -8,5 +8,5 @@ export default defineConfig({
     react(),
     tailwindcss(), // 2. 將它加入插件陣列中
   ],
-  base: '/kevin-portfolio/',
+  base: '/',
 })
