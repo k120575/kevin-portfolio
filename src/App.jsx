@@ -314,7 +314,7 @@ const App = () => {
                                 </button>
                             </div>
 
-                            <div className={`flex-1 overflow-hidden relative ${isMobile ? 'flex flex-col' : 'flex'}`}>
+                            <div className={`flex-1 overflow-hidden relative ${isMobile ? 'flex flex-col overflow-y-auto' : 'flex'}`}>
                                 {win.isTerminal ? (
                                     <div className="flex-1 bg-black/90 p-4 font-mono text-xs text-green-400 overflow-y-auto">
                                         {terminalHistory.map((line, i) => <div key={i} className="mb-1 leading-relaxed">{line}</div>)}
@@ -379,8 +379,8 @@ const App = () => {
                                     </div>
                                 ) : win.isWebApp ? (
                                     <>
-                                        <div className={`bg-black/40 p-5 flex flex-col border-white/10 ${isMobile ? 'w-full border-b max-h-[45%]' : 'w-[42%] border-r min-w-[240px]'}`}>
-                                            <div className="flex-1 bg-slate-950/80 rounded-2xl p-4 overflow-y-auto flex flex-col gap-3 scrollbar-hide">
+                                        <div className={`bg-black/40 flex flex-col border-white/10 ${isMobile ? 'w-full border-b p-4 shrink-0' : 'w-[42%] border-r min-w-[240px] p-5'}`}>
+                                            <div className={`bg-slate-950/80 rounded-2xl p-4 overflow-y-auto flex flex-col gap-3 scrollbar-hide ${isMobile ? 'max-h-[200px]' : 'flex-1'}`}>
                                                 {win.messages?.map((m, i) => (
                                                     <div key={i} className="flex flex-col gap-1">
                                                         {m.sender && (
@@ -399,12 +399,12 @@ const App = () => {
                                                     </div>
                                                 ))}
                                             </div>
-                                            <div className="mt-5 flex flex-col gap-2">
+                                            <div className={`flex gap-2 ${isMobile ? 'mt-3' : 'mt-5 flex-col'}`}>
                                                 <a
                                                     href={win.webAppUrl}
                                                     target="_blank"
                                                     rel="noopener noreferrer"
-                                                    className="flex items-center justify-center gap-2 bg-gradient-to-r from-red-500 to-orange-600 hover:from-red-600 hover:to-orange-700 text-white font-bold py-3 px-6 rounded-2xl transition-all duration-300 shadow-lg hover:shadow-red-500/25 text-sm"
+                                                    className={`flex items-center justify-center gap-2 bg-gradient-to-r from-red-500 to-orange-600 hover:from-red-600 hover:to-orange-700 text-white font-bold rounded-2xl transition-all duration-300 shadow-lg hover:shadow-red-500/25 ${isMobile ? 'py-2.5 px-4 text-xs flex-1' : 'py-3 px-6 text-sm'}`}
                                                 >
                                                     <ExternalLink size={16} /> 前往體驗
                                                 </a>
@@ -413,7 +413,7 @@ const App = () => {
                                                         href={win.purchaseUrl}
                                                         target="_blank"
                                                         rel="noopener noreferrer"
-                                                        className="flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 border border-white/20 text-white/80 hover:text-white font-bold py-3 px-6 rounded-2xl transition-all duration-300 text-sm"
+                                                        className={`flex items-center justify-center gap-2 bg-white/5 hover:bg-white/10 border border-white/20 text-white/80 hover:text-white font-bold rounded-2xl transition-all duration-300 ${isMobile ? 'py-2.5 px-4 text-xs flex-1' : 'py-3 px-6 text-sm'}`}
                                                     >
                                                         <Tag size={14} /> 購買授權碼
                                                     </a>
@@ -438,27 +438,29 @@ const App = () => {
                                     </>
                                 ) : (
                                     <>
-                                        <div className={`bg-black/40 p-5 flex flex-col border-white/10 ${isMobile ? 'w-full border-b max-h-[45%]' : 'w-[42%] border-r min-w-[240px]'}`}>
-                                            <div className="flex-1 bg-slate-950/80 rounded-2xl p-4 overflow-y-auto flex flex-col gap-4 scrollbar-hide">
+                                        <div className={`bg-black/40 flex flex-col border-white/10 ${isMobile ? 'w-full border-b p-4 shrink-0' : 'w-[42%] border-r min-w-[240px] p-5'}`}>
+                                            <div className={`bg-slate-950/80 rounded-2xl p-4 overflow-y-auto flex flex-col gap-4 scrollbar-hide ${isMobile ? 'max-h-[180px]' : 'flex-1'}`}>
                                                 {win.messages?.map((m, i) => (
                                                     <div key={i} className={`max-w-[90%] p-3 rounded-2xl text-[12px] ${m.type === 'bot' ? 'bg-slate-800 text-slate-200' : 'bg-indigo-600 self-end text-white'}`}>
                                                         {m.text}
                                                     </div>
                                                 ))}
                                             </div>
-                                            <div className="mt-5 flex flex-col items-center bg-white/5 rounded-2xl py-4 border border-white/10">
-                                                <img src={win.qrCode} alt="QR" className="w-16 h-16 bg-white p-1 rounded shadow-lg" />
-                                                <span className="text-[14px] mt-2 opacity-40 font-bold uppercase tracking-widest">請掃描</span>
-                                                {win.botUrl && (
-                                                    <a
-                                                        href={win.botUrl.url}
-                                                        target="_blank"
-                                                        rel="noopener noreferrer"
-                                                        className="mt-2 flex items-center gap-1.5 text-[12px] text-indigo-400 hover:text-indigo-300 hover:underline transition-colors"
-                                                    >
-                                                        <ExternalLink size={12} /> {win.botUrl.label}
-                                                    </a>
-                                                )}
+                                            <div className={`flex items-center bg-white/5 rounded-2xl border border-white/10 ${isMobile ? 'mt-3 py-2 px-3 gap-3' : 'mt-5 py-4 flex-col'}`}>
+                                                <img src={win.qrCode} alt="QR" className={`bg-white p-1 rounded shadow-lg ${isMobile ? 'w-12 h-12' : 'w-16 h-16'}`} />
+                                                <div className={`flex flex-col ${isMobile ? 'gap-1' : 'items-center'}`}>
+                                                    <span className={`opacity-40 font-bold uppercase tracking-widest ${isMobile ? 'text-[11px]' : 'text-[14px] mt-2'}`}>請掃描</span>
+                                                    {win.botUrl && (
+                                                        <a
+                                                            href={win.botUrl.url}
+                                                            target="_blank"
+                                                            rel="noopener noreferrer"
+                                                            className={`flex items-center gap-1.5 text-indigo-400 hover:text-indigo-300 hover:underline transition-colors ${isMobile ? 'text-[11px]' : 'text-[12px] mt-2'}`}
+                                                        >
+                                                            <ExternalLink size={12} /> {win.botUrl.label}
+                                                        </a>
+                                                    )}
+                                                </div>
                                             </div>
                                         </div>
 
