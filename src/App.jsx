@@ -47,6 +47,7 @@ const App = () => {
             features: ["自動化到期提醒：推播通知", "OCR 辨識：快速輸入", "資料庫同步", "快速新增各類票券", "使用記錄追蹤"],
             tech: ["Google Sheet", "Google Apps Script", "LINE API", "Gemini AI"],
             qrCode: "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://line.me/ti/p/~@714rwsvb",
+            botUrl: { label: "加入 LINE 好友", url: "https://line.me/ti/p/~@714rwsvb" },
             messages: [
                 { type: 'bot', text: '您好！我是您的票券管家。' },
                 { type: 'bot', text: '提醒您：您的「星巴克買一送一券」將在 3 天後到期！' },
@@ -65,6 +66,7 @@ const App = () => {
             features: ["AI 智能投資建議", "即時市場數據分析", "風險評估報告", "投資組合追蹤"],
             tech: ["Python", "Telegram API", "Gemini AI"],
             qrCode: "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://t.me/@k_invest999_bot",
+            botUrl: { label: "開啟 Telegram Bot", url: "https://t.me/k_invest999_bot" },
             messages: [
                 { type: 'user', text: '分析 NVDA 的技術指標' },
                 { type: 'bot', text: '正在串接市場數據...' },
@@ -446,7 +448,17 @@ const App = () => {
                                             </div>
                                             <div className="mt-5 flex flex-col items-center bg-white/5 rounded-2xl py-4 border border-white/10">
                                                 <img src={win.qrCode} alt="QR" className="w-16 h-16 bg-white p-1 rounded shadow-lg" />
-                                                <span className="text-[10px] mt-2 opacity-40 font-bold uppercase tracking-widest">請掃描</span>
+                                                <span className="text-[14px] mt-2 opacity-40 font-bold uppercase tracking-widest">請掃描</span>
+                                                {win.botUrl && (
+                                                    <a
+                                                        href={win.botUrl.url}
+                                                        target="_blank"
+                                                        rel="noopener noreferrer"
+                                                        className="mt-2 flex items-center gap-1.5 text-[12px] text-indigo-400 hover:text-indigo-300 hover:underline transition-colors"
+                                                    >
+                                                        <ExternalLink size={12} /> {win.botUrl.label}
+                                                    </a>
+                                                )}
                                             </div>
                                         </div>
 
