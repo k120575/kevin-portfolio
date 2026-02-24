@@ -4,23 +4,3 @@
 .window-header {
   user-select: none;
 }
-
-/* 行動裝置安全區 padding */
-@supports (padding-bottom: env(safe-area-inset-bottom)) {
-  .safe-area-bottom {
-    padding-bottom: env(safe-area-inset-bottom);
-  }
-}
-
-/* 行動裝置全螢幕視窗 */
-@media (max-width: 768px) {
-  .mobile-fullscreen-window {
-    position: fixed !important;
-    top: 0 !important;
-    left: 0 !important;
-    width: 100vw !important;
-    height: 100dvh !important;
-    border-radius: 0 !important;
-    transform: none !important;
-  }
-}
