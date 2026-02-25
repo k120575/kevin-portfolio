@@ -81,13 +81,13 @@ const App = () => {
             icon: Swords,
             gradient: "from-red-500 to-orange-600",
             tags: ["Web App", "Gemini AI", "面試模擬", "反作弊", "多語言"],
-            description: "與 Gemini 協作開發的高壓模擬面試系統，支援 HR 行為面試與技術深度拷問雙階段。具備反作弊偵測（視窗切換、複製貼上、壓力倒數），面試結束後自動生成評分報告。",
+            description: "與 Gemini 協作開發的高壓模擬面試系統，支援 HR 行為面試與技術深度拷問雙階段，面試結束後自動生成評分報告。",
             features: [
-                "雙階段面試：HR (STAR) + 技術深度拷問",
-                "8 種程式語言技術面試支援",
-                "反作弊系統：視窗切換偵測 / 貼上偵測 / 60秒限時",
-                "AI 自動評分與詳細回饋報告",
-                "面試紀錄自動儲存至 Google Sheets"
+                "雙階段面試：HR + 技術深度拷問",
+                "11 種程式語言技術面試支援",
+                "世界500大企業面試選題",
+                "題庫涵蓋 700+ 題",
+                "AI 自動評分與詳細回饋報告"
             ],
             tech: ["Cloudflare Pages", "Google Apps Script", "Gemini AI", "Vanilla JS"],
             isWebApp: true,
