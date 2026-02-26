@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
     Ticket, TrendingUp, Zap, Terminal, X, Monitor,
     Mail, Phone, FileText, User, Tag, Code2, ArrowUpRight,
-    Swords, ExternalLink
+    Swords, ExternalLink, Lightbulb
 } from 'lucide-react';
 
 const App = () => {
@@ -98,6 +98,31 @@ const App = () => {
                 { type: 'user', text: '在上一份工作中，我曾遇到團隊成員對技術方案有分歧...' },
                 { type: 'bot', text: '你提到了「分歧」，但沒有說明具體的衝突點。請用 STAR 原則重新回答。', sender: 'HR面試官' },
                 { type: 'bot', text: '⚠️ 偵測到視窗切換，已記錄。', sender: '系統' }
+            ]
+        },
+        {
+            id: "post-content-generator",
+            name: "PostGen",
+            fullName: "行銷貼文產生器 (Web App)",
+            icon: Lightbulb,
+            gradient: "from-violet-400 to-indigo-500",
+            tags: ["Web App", "Gemini AI", "行銷自動化", "內容行事曆", "社群貼文"],
+            description: "與 Gemini 協作開發的 AI 行銷內容產生器。輸入產品描述，自動生成 30 天高轉換率社群貼文行事曆，支援多平台格式與數據追蹤。",
+            features: [
+                "AI 生成 30 天行銷貼文行事曆",
+                "多平台格式：Threads / IG / X",
+                "短文、長文、問題式三種貼文類型",
+                "互動數據追蹤與 AI 成效分析",
+                "一鍵匯出與數據審計功能"
+            ],
+            tech: ["Cloudflare Pages", "Google Apps Script", "Gemini AI", "Vanilla JS"],
+            isWebApp: true,
+            webAppUrl: "https://post-content-generator.pages.dev/",
+            messages: [
+                { type: 'user', text: '我的產品是 AI 面試官，幫工程師模擬面試' },
+                { type: 'bot', text: '收到！正在為您生成 30 天行銷行事曆...', sender: '系統' },
+                { type: 'bot', text: 'Day 1: 為何你需要一個 AI 面試官？（教育型短文，建議晚上 8:00 發布）', sender: 'AI' },
+                { type: 'bot', text: 'Day 2: 面試前一晚你都在幹嘛？（問題式貼文，引發互動）', sender: 'AI' }
             ]
         }
     ];
