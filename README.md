@@ -21,6 +21,7 @@
   - **AI Investor**: 結合 Telegram Bot 與 Gemini AI 的投資輔助工具，提供即時市場數據分析與風險評估 (含模擬股價圖表)。
   - **BattleInterview**: AI 戰鬥面試官 Web App，雙階段模擬面試系統 (HR + 技術深度拷問)，具備反作弊偵測與自動評分報告。
   - **PostContentGenerator**: AI 行銷貼文產生器 Web App，輸入產品描述即自動生成 30 天社群貼文行事曆，支援 Threads/IG/X 多平台格式與數據追蹤。
+  - **AI Work Record**: AI 智慧工作日誌 Telegram Bot，直接傳訊息記錄工作，AI 自動分類（開發/Debug/會議/Review/學習），一鍵生成結構化週報月報。
 
 - **🎨 現代化 UI/UX**
   - **Tailwind CSS v4**: 採用最新的 Tailwind 引擎進行極速樣式渲染。

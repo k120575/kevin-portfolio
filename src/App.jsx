@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
     Ticket, TrendingUp, Zap, Terminal, X, Monitor,
     Mail, Phone, FileText, User, Tag, Code2, ArrowUpRight,
-    Swords, ExternalLink, Lightbulb
+    Swords, ExternalLink, Lightbulb, ClipboardList
 } from 'lucide-react';
 
 const App = () => {
@@ -65,7 +65,7 @@ const App = () => {
             description: "與 Gemini 協作開發，整合 Telegram 介面的投資輔助工具。利用 AI 進行市場情緒分析與即時報價。",
             features: ["AI 智能投資建議", "即時市場數據分析", "風險評估報告", "投資組合追蹤"],
             tech: ["Python", "Telegram API", "Gemini AI"],
-            qrCode: "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://t.me/@k_invest999_bot",
+            qrCode: "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://t.me/k_invest999_bot",
             botUrl: { label: "開啟 Telegram Bot", url: "https://t.me/k_invest999_bot" },
             messages: [
                 { type: 'user', text: '分析 NVDA 的技術指標' },
@@ -123,6 +123,31 @@ const App = () => {
                 { type: 'bot', text: '收到！正在為您生成 30 天行銷行事曆...', sender: '系統' },
                 { type: 'bot', text: 'Day 1: 為何你需要一個 AI 面試官？（教育型短文，建議晚上 8:00 發布）', sender: 'AI' },
                 { type: 'bot', text: 'Day 2: 面試前一晚你都在幹嘛？（問題式貼文，引發互動）', sender: 'AI' }
+            ]
+        },
+        {
+            id: "ai-work-record",
+            name: "WorkRecord",
+            fullName: "AI 智慧工作日誌 (Telegram Bot)",
+            icon: ClipboardList,
+            gradient: "from-cyan-400 to-blue-500",
+            tags: ["Telegram Bot", "Gemini AI", "工作日誌", "自動分類", "AI 週報"],
+            description: "與 Gemini 協作開發，專為工程師打造的 AI 智慧工作日誌。直接傳訊息記錄工作，AI 自動分類，一鍵生成週報月報。",
+            features: [
+                "AI 自動分類：開發/Debug/會議/Review/學習",
+                "一鍵生成結構化週報/月報",
+                "行事曆檢視每日紀錄",
+                "本週/本月工作量統計與分佈圖",
+                "每日提醒功能，自訂提醒時間"
+            ],
+            tech: ["Cloudflare Workers", "Cloudflare D1", "Telegram API", "Gemini AI"],
+            qrCode: "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://t.me/k_work_record_bot",
+            botUrl: { label: "開啟 Telegram Bot", url: "https://t.me/k_work_record_bot" },
+            messages: [
+                { type: 'user', text: '修復登入頁面的 CSS 跑版問題' },
+                { type: 'bot', text: '✅ 已記錄！\n📌 分類：Debug\n📅 2025-02-28' },
+                { type: 'user', text: '查看今日紀錄' },
+                { type: 'bot', text: '📝 今日已記錄 5 筆：\n• Debug x2\n• 開發 x2\n• 會議 x1' }
             ]
         }
     ];
